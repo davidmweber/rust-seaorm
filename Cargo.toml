@@ -1,0 +1,23 @@
+[package]
+name = "rust-seaorm"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [".", "entity", "migration"]
+
+[dependencies]
+async-std = { version = "^1", features = ["attributes", "tokio1"] }
+sea-orm = { version = "0.12.2", features = [
+  "sqlx-postgres",
+  "runtime-tokio-rustls",
+  "macros",
+] }
+tokio = { version = "1.32.0", features = ["macros", "rt-multi-thread"] }
+migration = { path = "migration" }
+dotenv = "0.15.0"
+entity = { path = "entity" }
+
+[dependencies.sea-orm-migration]
+version = "0.12"
+features = ["runtime-tokio-rustls", "sqlx-postgres"]
